@@ -13,6 +13,10 @@ after_success:
     - docker build -t rasthanadocker/multi-docker-nginx ./nginx
     - docker build -t rasthanadocker/multi-docker-server ./server
     - docker build -t rasthanadocker/multi-docker-worker ./worker
-    - if [ "$TRAVIS_BRANCH" == "master" ]; then echo "$DOCKER_PWD" | docker login -u "$DOCKER_UID" --password-stdin; docker push rasthanadocker/multi-docker-client;docker login -u "$DOCKER_UID" --password-stdin; docker push rasthanadocker/multi-docker-nginx;docker login -u "$DOCKER_UID" --password-stdin; docker push rasthanadocker/multi-docker-server;docker login -u "$DOCKER_UID" --password-stdin; docker push rasthanadocker/multi-docker-worker; fi
+    - echo "$DOCKER_PWD" | docker login -u "$DOCKER_UID" --password-stdin 
+    - docker push rasthanadocker/multi-docker-client
+    - docker push rasthanadocker/multi-docker-nginx
+    - docker push rasthanadocker/multi-docker-server
+    - docker push rasthanadocker/multi-docker-worker
 
 
