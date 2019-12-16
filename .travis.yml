@@ -16,7 +16,7 @@ after_success:
 
 deploy:
     provider: script
-    script: bash dockerhub_push.sh
+    script: "./dockerhub_push.sh"
     on:
         branch: master
 
