@@ -15,26 +15,8 @@ after_success:
     - docker build -t rasthanadocker/multi-docker-worker ./worker
 
 deploy:
-    - provider: script
-      script: docker login -u "$DOCKER_ID" -p "$DOCKER_PWD"
-      on:
-      branch: master
-    - provider: script
-      script: docker push -t rasthanadocker/multi-docker-client
-      on:
-      branch: master
-    - provider: script
-      script: docker push -t rasthanadocker/multi-docker-nginx
-      on:
-      branch: master
-    - provider: script
-      script: docker push -t rasthanadocker/multi-docker-server
-      on:
-      branch: master
-    - provider: script
-      script: docker push -t rasthanadocker/multi-docker-worker
-      on:
-      branch: master            
-
-
+    provider: script
+    script: bash dockerhub_push.sh
+    on:
+        branch: master
 
