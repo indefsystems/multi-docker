@@ -14,8 +14,11 @@ after_success:
     - docker build -t rasthanadocker/multi-docker-server ./server
     - docker build -t rasthanadocker/multi-docker-worker ./worker
 
-# LOGIN to docker CLI
-- echo "$DOCKER_PWD" | docker login -u "$DOCKER_ID" --password_stdin
+deploy:
+    provider: script
+    script: docker login -u "$DOCKER_ID" -p "$DOCKER_PWD"
+    on:
+        branch: master
 
 # Push build production docker images to github
 
