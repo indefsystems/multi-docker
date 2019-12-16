@@ -3,20 +3,20 @@ services:
     - docker
 
 before_install:
-    - docker build -t rasthanadocker/multi-docker-react-test -f ./client/Dockerfile.dev ./client
+    - docker build -t indefsystems/multi-docker-react-test -f ./client/Dockerfile.dev ./client
 
 script:
-    - docker run -e CI=true rasthanadocker/multi-docker-react-test npm test
+    - docker run -e CI=true indefsystems/multi-docker-react-test npm test
 
 after_success:
-    - docker build -t rasthanadocker/multi-docker-client ./client
-    - docker build -t rasthanadocker/multi-docker-nginx ./nginx
-    - docker build -t rasthanadocker/multi-docker-server ./server
-    - docker build -t rasthanadocker/multi-docker-worker ./worker
-    - echo "$DOCKER_PWD" | docker login -u "$DOCKER_ID" --password-stdin 
-    - docker push rasthanadocker/multi-docker-client
-    - docker push rasthanadocker/multi-docker-nginx
-    - docker push rasthanadocker/multi-docker-server
-    - docker push rasthanadocker/multi-docker-worker
+    - docker build -t indefsystems/multi-docker-client ./client
+    - docker build -t indefsystems/multi-docker-nginx ./nginx
+    - docker build -t indefsystems/multi-docker-server ./server
+    - docker build -t indefsystems/multi-docker-worker ./worker
+    - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_UID" --password-stdin 
+    - docker push indefsystems/multi-docker-client
+    - docker push indefsystems/multi-docker-nginx
+    - docker push indefsystems/multi-docker-server
+    - docker push indefsystems/multi-docker-worker
 
 
